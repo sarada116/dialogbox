@@ -1,0 +1,443 @@
+homescreen As screen:
+    Fill: =RGBA(227, 234, 243, 1)
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: =Set(showDialog,false)
+
+    Container1 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Bold
+        Fill: =RGBA(214, 221, 224, 1)
+        Height: =70
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =1363
+        ZIndex: =1
+
+        Label1 As label:
+            Align: =Align.Center
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =App.Theme.Colors.Primary
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Bold
+            Height: =70
+            Size: =25
+            Text: ="USER INFORMATION DATA"
+            Width: =1363
+            ZIndex: =1
+
+        Icon3 As icon.Save:
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =Color.White
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(244, 244, 244, 1)
+            Icon: =Icon.Save
+            OnSelect: =Set(showDialog,true)
+            X: =1263
+            Y: =6
+            ZIndex: =2
+
+        Icon4 As icon.Reload:
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =Color.White
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(244, 244, 244, 1)
+            Icon: =Icon.Reload
+            OnSelect: =NewForm(Form1)
+            X: =40
+            Y: =6
+            ZIndex: =3
+
+    Container2 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Semibold
+        Fill: =RGBA(214, 221, 224, 1)
+        Height: =480
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =552
+        X: =414
+        Y: =210
+        ZIndex: =2
+
+        Form1 As form.PowerApps_CoreControls_Form:
+            BorderColor: =App.Theme.Colors.Darker40
+            DataSource: ='members list'
+            DefaultMode: =FormMode.New
+            Height: =480
+            Item: =lastdata
+            NumberOfColumns: =1
+            OnSuccess: |
+                =Set(lastdata,Form1.LastSubmit);
+                ViewForm(Form1)
+            UseFluentV9Cards: =true
+            Width: =552
+            ZIndex: =1
+
+            NAME_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="NAME"
+                Default: =ThisItem.NAME
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@'members list'],DataSourceInfo.DisplayName,NAME)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@'members list'], DataSourceInfo.MaxLength, NAME)
+                Required: =false
+                Update: =DataCardValue2.Value
+                Width: =500
+                X: =0
+                Y: =0
+                ZIndex: =2
+
+                DataCardKey2 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue2 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =32
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey2.Y + DataCardKey2.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage2 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue2.Y + DataCardValue2.Height
+                    ZIndex: =3
+
+                StarVisible2 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey2.Y
+                    ZIndex: =4
+
+            CITY_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="CITY"
+                Default: =ThisItem.CITY
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@'members list'],DataSourceInfo.DisplayName,CITY)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@'members list'], DataSourceInfo.MaxLength, CITY)
+                Required: =false
+                Update: =DataCardValue3.Value
+                Width: =500
+                X: =0
+                Y: =1
+                ZIndex: =2
+
+                DataCardKey3 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue3 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =32
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey3.Y + DataCardKey3.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage3 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue3.Y + DataCardValue3.Height
+                    ZIndex: =3
+
+                StarVisible3 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey3.Y
+                    ZIndex: =4
+
+            GENDER_DataCard1 As typedDataCard.fluentV9ComboBoxEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="GENDER"
+                Default: =ThisItem.GENDER
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@'members list'],DataSourceInfo.DisplayName,GENDER)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =DataCardValue6.Selected
+                Width: =500
+                X: =0
+                Y: =2
+                ZIndex: =2
+
+                DataCardKey6 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                ErrorMessage6 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue6.Y + DataCardValue6.Height
+                    ZIndex: =3
+
+                StarVisible6 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =20
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey6.Y
+                    ZIndex: =4
+
+                DataCardValue6 As Radio.pcfdataset:
+                    DefaultSelectedItems: =ThisItem.GENDER
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =58
+                    Items: =Choices([@'members list'].GENDER)
+                    Layout: ="Horizontal"
+                    Width: =452
+                    X: =24
+                    Y: =36
+                    ZIndex: =5
+
+            AGES_DataCard1 As typedDataCard.fluentV9NumberEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="AGE"
+                Default: =ThisItem.AGES
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@'members list'],DataSourceInfo.DisplayName,AGES)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =Value(DataCardValue5.Value)
+                Width: =500
+                X: =0
+                Y: =3
+                ZIndex: =2
+
+                DataCardKey5 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue5 As 'Text input'":
+                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =32
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey5.Y + DataCardKey5.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage5 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue5.Y + DataCardValue5.Height
+                    ZIndex: =3
+
+                StarVisible5 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey5.Y
+                    ZIndex: =4
+
+            DEPARTMENTS_DataCard1 As typedDataCard.fluentV9ComboBoxEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="DEPARTMENT"
+                Default: =ThisItem.DEPARTMENTS
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@'members list'],DataSourceInfo.DisplayName,DEPARTMENTS)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =DataCardValue4.Selected
+                Width: =500
+                X: =0
+                Y: =4
+                ZIndex: =2
+
+                DataCardKey4 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                DataCardValue4 As Combobox.pcfdataset:
+                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                    DefaultSelectedItems: =[Parent.Default]
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =32
+                    Items: =Choices([@'members list'].DEPARTMENTS)
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey4.Y + DataCardKey4.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage4 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue4.Y + DataCardValue4.Height
+                    ZIndex: =3
+
+                StarVisible4 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =20
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey4.Y
+                    ZIndex: =4
+
+    Group1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =7
+
+        Rectangle2 As rectangle:
+            BorderColor: =App.Theme.Colors.Darker40
+            Fill: =RGBA(179,208,221,0.6)
+            Height: =154
+            OnSelect: =
+            Visible: =showDialog
+            Width: =498
+            X: =438
+            Y: =348
+            ZIndex: =3
+
+        Label3 As label:
+            Align: =Align.Center
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Font: =App.Theme.Font
+            Height: =46
+            Size: =13
+            Text: ="Click on Save to Submit and Cancel to Reset the Data"
+            Visible: =showDialog
+            Width: =452
+            X: =453
+            Y: =384
+            ZIndex: =4
+
+        btnsave As Button:
+            DisplayMode: =DisplayMode.Edit
+            Height: =35
+            Icon: ="Save"
+            OnSelect: =SubmitForm(Form1);Notify("Form has been successfully submitted!!!",NotificationType.Success);Set(showDialog,false)
+            Text: ="Save"
+            Visible: =showDialog
+            Width: =96
+            X: =498
+            Y: =454
+            ZIndex: =5
+
+        ButtonCanvas3 As Button:
+            DisplayMode: =DisplayMode.Edit
+            Height: =35
+            Icon: ="ArrowSync"
+            OnSelect: =ResetForm(Form1);Notify("Form has been successfully cancelled!!!",NotificationType.Error);Set(showDialog,false)
+            Text: ="Cancel"
+            Visible: =showDialog
+            Width: =96
+            X: =760
+            Y: =454
+            ZIndex: =6
+
